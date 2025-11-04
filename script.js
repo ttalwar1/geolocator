@@ -26,13 +26,11 @@ async function loadLocation() {
 
 async function handleSubmit(e) {
   e.preventDefault();
-  const btn = document.getElementById("submitBtn");
   const q = document.getElementById("query").value.trim();
   if (!q) return;
 
-  btn.classList.add("loading");
-  btn.disabled = true;
-  document.getElementById("status").textContent = "Working…";
+  const status = document.getElementById("status");
+  status.textContent = "Working…";
 
   try {
     const res = await fetch(API_URL, {
@@ -41,49 +39,32 @@ async function handleSubmit(e) {
       body: JSON.stringify({ question: q, city: userCity }),
     });
 
-    const overlay = document.getElementById("overlay");
-    const reply = document.getElementById("reply");
-
     if (!res.ok) {
       const allow = res.headers.get("Allow");
       const text = await res.text();
-      reply.textContent = `Request failed (${res.status}). Allow: ${
-        allow || "n/a"
-      }\n\n${text}`;
-      overlay.classList.remove("hidden");
+      alert(
+        `Request failed (${res.status}). Allow: ${allow || "n/a"}\n\n${text}`
+      );
+      status.textContent = "Done";
       return;
     }
 
     const data = await res.json();
-    reply.textContent =
-      typeof data === "string" ? data : JSON.stringify(data, null, 2);
-    overlay.classList.remove("hidden");
+    alert(
+      typeof data === "string"
+        ? data
+        : data.reply ?? JSON.stringify(data, null, 2)
+    );
   } catch (err) {
     console.error(err);
-    const overlay = document.getElementById("overlay");
-    const reply = document.getElementById("reply");
-    reply.textContent = "Network or server error.";
-    overlay.classList.remove("hidden");
+    alert("Network or server error.");
   } finally {
-    btn.classList.remove("loading");
-    btn.disabled = false;
-    document.getElementById("status").textContent = "Done";
+    status.textContent = "Done";
   }
-}
-
-function wirePopup() {
-  const overlay = document.getElementById("overlay");
-  document
-    .getElementById("closePopup")
-    .addEventListener("click", () => overlay.classList.add("hidden"));
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) overlay.classList.add("hidden");
-  });
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   loadLocation();
-  wirePopup();
   document
     .getElementById("searchForm")
     .addEventListener("submit", handleSubmit);

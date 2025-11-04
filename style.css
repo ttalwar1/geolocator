@@ -13,7 +13,6 @@ body {
 .wrap {
   text-align: center;
 }
-
 h1 {
   margin-bottom: 0.5rem;
 }
@@ -39,20 +38,18 @@ h1 {
   margin-bottom: 1rem;
 }
 
-/* Added styling for form input and button */
 form {
   margin-top: 1.5rem;
 }
 
 #query {
-  width: 240px;
-  padding: 8px 10px;
+  width: 280px;
+  padding: 10px 12px;
   font-size: 1rem;
   border: 1px solid #bbb;
   border-radius: 6px;
   outline: none;
 }
-
 #query:focus {
   border-color: #0078d4;
   box-shadow: 0 0 3px rgba(0, 120, 212, 0.3);
@@ -60,15 +57,90 @@ form {
 
 button {
   margin-left: 8px;
-  padding: 8px 14px;
+  padding: 10px 16px;
   font-size: 1rem;
   background-color: #0078d4;
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  position: relative;
 }
-
 button:hover {
   background-color: #005fa3;
+}
+button:disabled {
+  opacity: 0.75;
+  cursor: default;
+}
+
+/* Spinner inside the Submit button when loading */
+button.loading {
+  padding-right: 40px;
+}
+button.loading::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  margin-top: -9px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Popup overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.popup {
+  width: min(900px, 92vw);
+  max-height: 80vh;
+  overflow: auto;
+  background: #fff;
+  color: #111;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  padding: 16px;
+}
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.close-btn {
+  background: transparent;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+  line-height: 1;
+}
+.close-btn:hover {
+  background: #f1f1f1;
+}
+.reply {
+  background: #0f1218;
+  color: #e6e6e6;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #22262e;
+  white-space: pre-wrap;
+  word-break: break-word;
 }

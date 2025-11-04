@@ -5,7 +5,8 @@
       "type": "httpTrigger",
       "direction": "in",
       "methods": ["post"],
-      "name": "req"
+      "name": "req",
+      "route": "chat"
     },
     {
       "type": "http",

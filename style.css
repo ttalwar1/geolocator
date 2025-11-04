@@ -36,4 +36,39 @@ h1 {
 #status {
   color: #666;
   font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+/* Added styling for form input and button */
+form {
+  margin-top: 1.5rem;
+}
+
+#query {
+  width: 240px;
+  padding: 8px 10px;
+  font-size: 1rem;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  outline: none;
+}
+
+#query:focus {
+  border-color: #0078d4;
+  box-shadow: 0 0 3px rgba(0, 120, 212, 0.3);
+}
+
+button {
+  margin-left: 8px;
+  padding: 8px 14px;
+  font-size: 1rem;
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005fa3;
 }

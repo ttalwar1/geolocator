@@ -1,0 +1,23 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+}
+
+.wrap {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0.2rem 0;
+}
+
+p {
+  color: #555;
+  margin: 0;
+}

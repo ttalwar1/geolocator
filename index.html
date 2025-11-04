@@ -3,19 +3,53 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello World</title>
+    <title>Geo Lookup (Server-side IP)</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="wrap">
-      <main>
-        <h1>Hello, world!!</h1>
-        <p>Placeholder is a static HTML page using an external stylesheet.</p>
+      <main class="card">
+        <h1>Server IP → Location</h1>
+        <p class="subtle">
+          Calls your API and displays the parsed JSON response.
+        </p>
+
+        <div class="controls">
+          <button id="btnFetch">Get Location</button>
+          <span id="status" aria-live="polite"></span>
+        </div>
+
+        <section id="parsed" class="grid">
+          <div>
+            <label>IP Address</label>
+            <div id="ipAddress" class="value">—</div>
+          </div>
+          <div>
+            <label>Country</label>
+            <div id="country" class="value">—</div>
+          </div>
+          <div>
+            <label>City</label>
+            <div id="city" class="value">—</div>
+          </div>
+          <div>
+            <label>Latitude</label>
+            <div id="latitude" class="value">—</div>
+          </div>
+          <div>
+            <label>Longitude</label>
+            <div id="longitude" class="value">—</div>
+          </div>
+        </section>
+
+        <details class="raw">
+          <summary>Raw JSON</summary>
+          <pre id="rawJson">{}</pre>
+        </details>
       </main>
     </div>
 
-    <script>
-      console.log("Hello, world!");
-    </script>
+    <!-- ✅ External script loaded at the end -->
+    <script src="script.js"></script>
   </body>
 </html>

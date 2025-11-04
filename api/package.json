@@ -1,0 +1,10 @@
+{
+  "name": "geolocator-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Azure Static Web Apps backend functions for Geolocator",
+  "dependencies": {
+    "openai": "^4.56.0"
+  }
+}

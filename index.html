@@ -3,53 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Geo Lookup (Server-side IP)</title>
+    <title>Geolocation Info</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="wrap">
-      <main class="card">
-        <h1>Server IP → Location</h1>
-        <p class="subtle">
-          Calls your API and displays the parsed JSON response.
-        </p>
+    <main class="wrap">
+      <h1>Geolocation Lookup</h1>
+      <div id="status">Loading…</div>
 
-        <div class="controls">
-          <button id="btnFetch">Get Location</button>
-          <span id="status" aria-live="polite"></span>
-        </div>
+      <div id="result" class="card hidden">
+        <p><strong>IP:</strong> <span id="ip">—</span></p>
+        <p><strong>Country:</strong> <span id="country">—</span></p>
+        <p><strong>City:</strong> <span id="city">—</span></p>
+        <p><strong>Latitude:</strong> <span id="lat">—</span></p>
+        <p><strong>Longitude:</strong> <span id="lng">—</span></p>
+      </div>
+    </main>
 
-        <section id="parsed" class="grid">
-          <div>
-            <label>IP Address</label>
-            <div id="ipAddress" class="value">—</div>
-          </div>
-          <div>
-            <label>Country</label>
-            <div id="country" class="value">—</div>
-          </div>
-          <div>
-            <label>City</label>
-            <div id="city" class="value">—</div>
-          </div>
-          <div>
-            <label>Latitude</label>
-            <div id="latitude" class="value">—</div>
-          </div>
-          <div>
-            <label>Longitude</label>
-            <div id="longitude" class="value">—</div>
-          </div>
-        </section>
-
-        <details class="raw">
-          <summary>Raw JSON</summary>
-          <pre id="rawJson">{}</pre>
-        </details>
-      </main>
-    </div>
-
-    <!-- ✅ External script loaded at the end -->
     <script src="script.js"></script>
   </body>
 </html>

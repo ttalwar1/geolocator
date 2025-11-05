@@ -30,7 +30,10 @@ async function handleSubmit(e) {
   if (!q) return;
 
   const status = document.getElementById("status");
+  const responseDiv = document.getElementById("response");
   status.textContent = "Working…";
+  responseDiv.classList.remove("hidden");
+  responseDiv.textContent = "Loading…";
 
   try {
     const res = await fetch(API_URL, {
@@ -42,22 +45,21 @@ async function handleSubmit(e) {
     if (!res.ok) {
       const allow = res.headers.get("Allow");
       const text = await res.text();
-      alert(
-        `Request failed (${res.status}). Allow: ${allow || "n/a"}\n\n${text}`
-      );
+      responseDiv.textContent = `Request failed (${res.status}). Allow: ${
+        allow || "n/a"
+      }\n\n${text}`;
       status.textContent = "Done";
       return;
     }
 
     const data = await res.json();
-    alert(
+    responseDiv.textContent =
       typeof data === "string"
         ? data
-        : data.reply ?? JSON.stringify(data, null, 2)
-    );
+        : data.reply ?? JSON.stringify(data, null, 2);
   } catch (err) {
     console.error(err);
-    alert("Network or server error.");
+    responseDiv.textContent = "Network or server error.";
   } finally {
     status.textContent = "Done";
   }

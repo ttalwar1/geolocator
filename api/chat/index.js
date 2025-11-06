@@ -8,9 +8,9 @@ export default async function (context, req) {
     return { status: 400, body: "Missing question" };
   }
 
-  const prompt = `provide relevant information for the city the user is located: ${
+  const prompt = `provide succient but relevant information for the city include addresses to the user located: ${
     city || "an unknown city"
-  }. Context of the area the user is interested in within this geolocation: ${question}`;
+  }. Provide holistic context of the area the user is interested in within this geolocation: ${question}`;
 
   const completion = await client.chat.completions.create({
     model: "gpt-4o-mini",
